@@ -342,6 +342,19 @@ header .wrap {
     grid-template-columns: repeat(4, 1fr)
 }
 
+.grid.duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 880px
+}
+
+.alt {
+    background: var(--surf)
+}
+
+.alt .meta h3 {
+    color: var(--ink)
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -458,6 +471,392 @@ header .wrap {
 
 .mrow>div:hover img {
     transform: scale(1.03)
+}
+
+/* ventana de detalle */
+button.card {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    width: 100%
+}
+
+dialog {
+    border: 0;
+    padding: 0;
+    border-radius: 20px;
+    background: var(--bg);
+    color: var(--ink);
+    width: min(1100px, 94vw);
+    max-height: 92svh;
+    margin: auto;
+    overflow: auto;
+    overscroll-behavior: contain
+}
+
+dialog[open] {
+    animation: dlgin .26s var(--ease)
+}
+
+dialog.out {
+    animation: dlgout .16s ease-in forwards
+}
+
+dialog::backdrop {
+    background: rgba(42, 13, 13, .6);
+    animation: fade .2s ease-out
+}
+
+dialog.out::backdrop {
+    animation: fadeout .16s ease-in forwards
+}
+
+@keyframes dlgin {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(.97)
+    }
+}
+
+@keyframes dlgout {
+    to {
+        opacity: 0;
+        transform: translateY(8px) scale(.98)
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0
+    }
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0
+    }
+}
+
+.dtop {
+    position: sticky;
+    top: 0;
+    height: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-end
+}
+
+.dclose {
+    margin: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 160ms var(--ease)
+}
+
+.dclose:hover {
+    transform: scale(1.05)
+}
+
+.dclose:active {
+    transform: scale(.94)
+}
+
+.dg {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr)
+}
+
+.dgal {
+    padding: clamp(16px, 2.4vw, 32px);
+    background: var(--surf);
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.dmain {
+    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg)
+}
+
+.dmain img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 25%;
+    transition: opacity .2s
+}
+
+.dthumbs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px
+}
+
+.dthumbs button {
+    flex: 0 0 64px;
+    height: 84px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    background: none;
+    cursor: pointer;
+    opacity: .7;
+    transition: opacity .2s, transform 160ms var(--ease)
+}
+
+.dthumbs button:hover {
+    opacity: 1
+}
+
+.dthumbs button:active {
+    transform: scale(.96)
+}
+
+.dthumbs button[aria-current="true"] {
+    border-color: var(--wine);
+    opacity: 1
+}
+
+.dthumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block
+}
+
+.dinfo {
+    padding: clamp(24px, 3.4vw, 48px);
+    padding-top: clamp(56px, 5vw, 64px)
+}
+
+.dinfo h2 {
+    font-size: clamp(44px, 5.6vw, 84px);
+    margin: 0 0 28px;
+    max-width: none;
+    font-family: "Archivo Black", "Bricolage Grotesque", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -.04em;
+    color: var(--wine)
+}
+
+.dblock {
+    padding: 20px 0;
+    border-top: 1px solid var(--line)
+}
+
+.dblock h3 {
+    font: 700 12px/1 "Bricolage Grotesque", sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 14px
+}
+
+.sw {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    list-style: none;
+    padding: 0
+}
+
+.sw li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px
+}
+
+.sw i {
+    width: 40px;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid var(--line);
+    display: block
+}
+
+.sw small {
+    color: var(--mute);
+    font-size: 13px
+}
+
+.dgrp+.dgrp {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line)
+}
+
+.dgrp .dtela {
+    margin-top: 14px
+}
+
+.dtela {
+    font: 600 clamp(22px, 2.4vw, 30px)/1.1 "Bricolage Grotesque", sans-serif;
+    letter-spacing: -.02em
+}
+
+.tw {
+    overflow-x: auto
+}
+
+table.med {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 420px;
+    font-size: 15px
+}
+
+.med th,
+.med td {
+    padding: 11px 10px;
+    border: 1px solid var(--line);
+    text-align: center
+}
+
+.med thead th {
+    background: var(--surf);
+    color: var(--wine);
+    font-weight: 700
+}
+
+.med tbody th {
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap
+}
+
+.sw {
+    gap: 6px 14px
+}
+
+.swb,
+.swn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+    color: inherit;
+    padding: 4px 10px 4px 4px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: none
+}
+
+.swb {
+    cursor: pointer;
+    transition: border-color .2s, transform 160ms var(--ease)
+}
+
+.swb::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--wine);
+    flex: none
+}
+
+.swb:hover {
+    border-color: var(--line)
+}
+
+.swb:active {
+    transform: scale(.97)
+}
+
+.swb[aria-pressed="true"] {
+    border-color: var(--wine)
+}
+
+.dref {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    background: rgba(20, 5, 5, .62);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px
+}
+
+.dref[hidden] {
+    display: none
+}
+
+.dhint {
+    font-size: 13px;
+    color: var(--mute);
+    margin-top: 14px;
+    max-width: 46ch
+}
+
+.dhint+.dhint {
+    margin-top: 6px
+}
+
+.dnote {
+    color: var(--mute);
+    font-size: 17px;
+    max-width: 40ch
+}
+
+.dcta {
+    margin-top: 8px
+}
+
+@media(max-width:820px) {
+    dialog {
+        width: 100vw;
+        max-height: 94svh;
+        margin-bottom: 0;
+        border-radius: 20px 20px 0 0
+    }
+
+    .dg {
+        grid-template-columns: 1fr
+    }
+
+    .dmain {
+        aspect-ratio: 4/5;
+        max-height: 62svh
+    }
+
+    .dinfo {
+        padding-top: 24px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    dialog[open],
+    dialog.out {
+        animation: none
+    }
+
+    dialog::backdrop {
+        animation: none
+    }
 }
 
 /* fabrics */
